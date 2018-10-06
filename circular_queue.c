@@ -50,9 +50,9 @@ void enqueue(struct circular *q)                //enqueue function to insert an 
 void dequeue(struct circular *q)                //dequeue function to delete an element at the front 
 {    if(q->rear==-1)                            //when queue is empty
         printf("Sorry, the queue is empty cannot dequeue\n"); 
-    else if(q->front==q->rear)                  //when queue has only one element
+     else if(q->front==q->rear)                  //when queue has only one element
         q->front=q->rear=-1;
-    else
+     else
         q->front=q->front+1;
 }
 
