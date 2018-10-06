@@ -11,7 +11,7 @@ void print(struct circular cq);
 void isfull(struct circular cq);
 void isempty(struct circular cq);
 int main()
-{   struct circular cq;
+{   struct circular cq;                 //creating empty circular list
     cq.front=cq.rear=-1;
     int i;
     A:
