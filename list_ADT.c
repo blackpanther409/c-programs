@@ -72,17 +72,23 @@ void insert( struct list *pl,int pos,int x)
 }
 
 void delete( struct list *pl,int pos)
-{ for(int i=pos;i<(pl->lsize)-1;i++)
-  	pl->a[i]=pl->a[i+1];
-  pl->lsize--;
-
+{ 	if(pl->lsize==0)
+		printf("Sorry no elements in the list, cannot delete");
+ 	else 
+		{for(int i=pos;i<(pl->lsize)-1;i++)
+  			pl->a[i]=pl->a[i+1];
+  		 pl->lsize--;
+		}
 }
 
 void print(struct list l)
-{
-  for(int i=0;i<l.lsize;i++)
-  	printf("%d  ",l.a[i]);
-  printf("\n");
+{ if(l.lsize==0)
+		printf("Sorry no elements in the list, cannot delete");
+  else
+  		{ for(int i=0;i<l.lsize;i++)
+  		  	printf("%d  ",l.a[i]);
+  		  printf("\n");
+		}
 }
 
 void search( struct list *pl,int x)
