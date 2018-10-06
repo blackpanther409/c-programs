@@ -14,7 +14,7 @@ void isFull(struct list l);
 int main()
 {	int pos,x;
   	int c;
-  	struct list l;
+  	struct list l;				//creating empty list
   	l.lsize=0;
   	A:
   	printf("enter 1 to insert \n 2 to delete\n 3 to search \n 4 to check is_empty? \n 5 to check is_full?\n");
@@ -22,12 +22,12 @@ int main()
   	scanf("%d",&c);
   	if(c==1)
   		{ printf("Enter position and value to be inserted\n");
-    	  fflush(stdin);
-    	  scanf("%d%d",&pos,&x);
-    	  if(pos>=0 && pos<20 && pos<=(l.lsize))
-    		{ insert(&l,pos,x);
-     		  print(l);}
-    	  else
+    	   fflush(stdin);
+    	   scanf("%d%d",&pos,&x);
+    	   if(pos>=0 && pos<20 && pos<=(l.lsize))
+    	   	{ insert(&l,pos,x);
+     	   	  print(l);}
+    	   else
     		printf("Invalid position to insert into the array please try again\n");goto A;
   		}
 
@@ -61,7 +61,7 @@ int main()
   	}
   return 0;
 }
-void insert( struct list *pl,int pos,int x)
+void insert( struct list *pl,int pos,int x)		//insert function
 {
 
   int i;
@@ -71,7 +71,7 @@ void insert( struct list *pl,int pos,int x)
   pl->lsize++;
 }
 
-void delete( struct list *pl,int pos)
+void delete( struct list *pl,int pos)			//delete function
 { 	if(pl->lsize==0)
 		printf("Sorry no elements in the list, cannot delete");
  	else 
@@ -81,7 +81,7 @@ void delete( struct list *pl,int pos)
 		}
 }
 
-void print(struct list l)
+void print(struct list l)						//print function
 { if(l.lsize==0)
 		printf("Sorry no elements in the list, cannot delete");
   else
@@ -91,7 +91,7 @@ void print(struct list l)
 		}
 }
 
-void search( struct list *pl,int x)
+void search( struct list *pl,int x)				//search function
 { int k=0;
   for(int i=0;i<(pl->lsize);i++)
    	{if(pl->a[i]==x)
@@ -102,7 +102,7 @@ void search( struct list *pl,int x)
   	printf("the element is not present in the array\n");
 }
 
-void isEmpty(struct list l)
+void isEmpty(struct list l)						//isempty function
 {
 	if(l.lsize==0)
  		printf("\nthe list is empty\n\n");
@@ -112,7 +112,7 @@ void isEmpty(struct list l)
 }
 
 
-void isFull(struct list l)
+void isFull(struct list l)						//isfull function
 {
 	if(l.lsize==20)
  		printf("\nthe list is full\n\n");
