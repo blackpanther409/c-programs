@@ -52,11 +52,11 @@ void insert()
 		scanf("%s",temp->author);
 		printf("Enter the accesory number\n");
 		scanf("%d",&temp->num);
-		if(rptr==NULL)
+		if(rptr==NULL)						//when tree is empty
 		{
 			rptr=temp;
 		}
-		else
+		else							   //when tree is empty
 		{
 			while(ptr!=NULL)
 			{
@@ -106,28 +106,28 @@ void delete()
 		else
 			ptr=ptr->rcptr;
 	}
-	if(ptr==NULL)
+	if(ptr==NULL)									//when the tree is empty
 		printf("Cannot delete\n");
 	else if(rptr->rcptr==NULL && rptr->lcptr==NULL)
 		{
-			rptr=NULL;			
+			rptr=NULL;								//only one child node to the root to be deleted 			
 		}
 	else if(ptr==rptr && ( rptr->lcptr==NULL || rptr->rcptr==NULL))
-		{
+		{											//when root node is to be deleted
 			if(rptr->lcptr==NULL)
 			rptr=rptr->rcptr;
 			else
 			rptr=rptr->lcptr;
 		}
 	else if(ptr->rcptr==NULL && ptr->lcptr==NULL)
-		{
+		{											//when leaf node is to be deleted
 			if(strcmp(ptr->title,pptr->title)<0)
 			pptr->lcptr=NULL;
 			else
 			pptr->rcptr=NULL;
 		}
 	else if((ptr->rcptr==NULL && ptr->lcptr!=NULL)||(ptr->rcptr!=NULL && ptr->lcptr==NULL))
-		{
+		{											//when node to be deleted has only one child
 			if(ptr->rcptr==NULL || (strcmp(a,pptr->title)<0))
 			{
 				pptr->lcptr=ptr->lcptr;
@@ -146,7 +146,7 @@ void delete()
 			}
 		}	
 		
-	else
+	else											//when node to be deleted has two children
 		{	ptemp=ptr;
 			temp=ptr->rcptr;
 			
@@ -193,7 +193,7 @@ void search()
 		else
 			thptr=thptr->rcptr;
 	}
-	if(thptr==NULL)
+	if(thptr==NULL)									
 	printf("The book is currently not available\n");
 	 
 }
