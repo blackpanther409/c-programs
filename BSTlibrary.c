@@ -1,4 +1,4 @@
-#include<stdio.h>
+ #include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
 struct node
@@ -52,11 +52,11 @@ void insert()
 		scanf("%s",temp->author);
 		printf("Enter the accesory number\n");
 		scanf("%d",&temp->num);
-		if(rptr==NULL)						//when tree is empty
+		if(rptr==NULL)
 		{
 			rptr=temp;
 		}
-		else							   //when tree is empty
+		else
 		{
 			while(ptr!=NULL)
 			{
@@ -90,7 +90,7 @@ void inorder(struct node* ptr)
 void delete()
 {
 	struct node* ptemp=NULL;
-	struct node* temp;
+	struct node* temp=NULL;
 	struct node* ptr=rptr;
 	struct node* pptr=ptr;
 	char a[100];
@@ -106,48 +106,47 @@ void delete()
 		else
 			ptr=ptr->rcptr;
 	}
-	if(ptr==NULL)									//when the tree is empty
+	if(ptr==NULL)
 		printf("Cannot delete\n");
 	else if(rptr->rcptr==NULL && rptr->lcptr==NULL)
 		{
-			rptr=NULL;								//only one child node to the root to be deleted 			
+			rptr=NULL;			
 		}
 	else if(ptr==rptr && ( rptr->lcptr==NULL || rptr->rcptr==NULL))
-		{											//when root node is to be deleted
+		{
 			if(rptr->lcptr==NULL)
 			rptr=rptr->rcptr;
 			else
 			rptr=rptr->lcptr;
 		}
 	else if(ptr->rcptr==NULL && ptr->lcptr==NULL)
-		{											//when leaf node is to be deleted
+		{
 			if(strcmp(ptr->title,pptr->title)<0)
 			pptr->lcptr=NULL;
 			else
 			pptr->rcptr=NULL;
 		}
 	else if((ptr->rcptr==NULL && ptr->lcptr!=NULL)||(ptr->rcptr!=NULL && ptr->lcptr==NULL))
-		{											//when node to be deleted has only one child
-			if(ptr->rcptr==NULL || (strcmp(a,pptr->title)<0))
-			{
-				pptr->lcptr=ptr->lcptr;
-			}
-			else if(ptr->rcptr==NULL || (strcmp(a,pptr->title)>0))
-			{
-				pptr->rcptr=ptr->lcptr;
-			}
-			else if(ptr->lcptr==NULL || (strcmp(a,pptr->title)<0))
-			{
-				pptr->lcptr=ptr->rcptr;
-			}
-			else
-			{
-				pptr->rcptr=ptr->rcptr;
-			}
+		{
+			 
+
+		if( (strcmp(a,pptr->title)<0) && ptr->lcptr!=NULL)
+			pptr->lcptr=ptr->lcptr;		
+		else if((strcmp(a,pptr->title)<0) && ptr->lcptr==NULL)
+			pptr->lcptr=ptr->rcptr;
+		else if( (strcmp(a,pptr->title)>0) && ptr->lcptr!=NULL)
+			pptr->rcptr=ptr->lcptr;
+		else
+			pptr->rcptr=ptr->rcptr;   
+
+
+
 		}	
 		
-	else											//when node to be deleted has two children
-		{	ptemp=ptr;
+	else
+		{	
+			temp=ptr;			
+			ptemp=temp;
 			temp=ptr->rcptr;
 			
 			while(temp->lcptr!=NULL)
@@ -155,18 +154,15 @@ void delete()
 				ptemp=temp;
 				temp=temp->lcptr;
 			}
+			strcpy(ptr->title,temp->title);
 			if(strcmp(temp->title,ptemp->title)<0)
-			{
-				ptemp->lcptr=NULL;
-			}
+		 		ptemp->lcptr=temp->rcptr;
 			else
-				ptemp->rcptr=NULL;
-			temp->lcptr=ptr->lcptr;
-			temp->rcptr=ptr->rcptr;
-			if(strcmp(ptr->title,pptr->title)<0)
-				pptr->lcptr=temp;
-			else
-				pptr->rcptr=temp;
+				ptemp->rcptr=temp->rcptr;
+			 
+			 
+			 
+				
 			
 		}	
 		
@@ -193,7 +189,7 @@ void search()
 		else
 			thptr=thptr->rcptr;
 	}
-	if(thptr==NULL)									
+	if(thptr==NULL)
 	printf("The book is currently not available\n");
 	 
 }
